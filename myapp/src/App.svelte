@@ -1,41 +1,44 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import VirtualPet from './lib/VPet.svelte'
+  //import svelteLogo from './assets/svelte.svg'
+  import PetModule from './lib/VPet.svelte'
+  //import PetModule2 from './lib/VPet2.svelte'
 
   let name = 'Daniel and Tommy';
-</script>
+  </script>
 
 <main>
-  <div>
-    <a href="https://vitejs.dev" target="_blank"> 
+  <!-- <div>
+     <a href="https://vitejs.dev" target="_blank"> 
       <img src="/vite.svg" class="logo" alt="Vite Logo" />
     </a>
     <a href="https://svelte.dev" target="_blank"> 
       <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
     </a>
-  </div>
+  </div> -->
+  
+  <h1>
+    Hello, {name}!
+  </h1>
+
   <h1>Your Virtual Pet</h1>
 
   <div class="card">
-    <VirtualPet />
+    <PetModule/>
+    <!-- <PetModule2/> -->
   </div>
 
-  <p>
+  <!-- <p>
     Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank">SvelteKit</a>, the official Svelte app framework powered by Vite!
   </p>
 
   <p class="read-the-docs">
     Click on the Vite and Svelte logos to learn more
-  </p>
-
-  <h1>
-    Hello, {name}!
-  </h1>
+  </p> -->
 
 </main>
 
 <style>
-  .logo {
+  /* .logo {
     height: 6em;
     padding: 1.5em;
     will-change: filter;
@@ -48,5 +51,5 @@
   }
   .read-the-docs {
     color: #888;
-  }
+  } */
 </style>
