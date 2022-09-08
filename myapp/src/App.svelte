@@ -1,52 +1,46 @@
-<script>
-  import svelteLogo from './assets/svelte.svg'
-  import VirtualPet from './lib/VPet.svelte'
 
+<script>
+  // @ts-ignore
+import svelteLogo from './assets/svelte.svg'
+  import VirtualPet from './lib/VPet.svelte'
+   import * as PIXI from 'pixi.js'
+ import Viewport from './lib/PixiScrn.svelte'
   let name = 'Daniel and Tommy';
+
+
 </script>
 
-<main>
-  <div>
-    <a href="https://vitejs.dev" target="_blank"> 
-      <img src="/vite.svg" class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank"> 
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
+<main> 
+  <body>
+  
+  <div id= "display">
+    <Viewport  />
+ 
   </div>
-  <h1>Your Virtual Pet</h1>
-
+  
   <div class="card">
     <VirtualPet />
-  </div>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
-
-  <h1>
-    Hello, {name}!
-  </h1>
-
+     
+ </div>
+  
+  </body>
 </main>
 
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
+  * {
+    padding:0;
+    margin: 0;
+    
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
-  }
+ 
+  #display {
+  border: 1-x dashed black;
+ }
+
+ body {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
 </style>

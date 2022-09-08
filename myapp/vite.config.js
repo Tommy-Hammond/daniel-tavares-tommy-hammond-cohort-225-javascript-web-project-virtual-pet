@@ -5,3 +5,11 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 export default defineConfig({
   plugins: [svelte()]
 })
+
+const config = {
+  /* ... */
+
+  optimizeDeps: {
+    include: ['pixi.js'],
+  },
+}
