@@ -13,7 +13,7 @@
 
 
 <!-- ------------------------ -->
-<!-- Tommy's Code for Pet Object -->
+<!-- Tommy's Code for Pet Class -->
 <script context="module">
   class Pet {
 
@@ -27,17 +27,19 @@
       this.favoriteFood = this.selectFavoriteFood();
       this.favoriteToy = this.selectFavoriteToy();
 
-
       this.mood = this.calcMood(this._moodQuotient);
       this.hunger = this.calcHunger(this._hungerQuotient);
 
+      this.dead = false;
+
+      this.initializePet();
       this.setPrintableList();
 
     }
 
     //Setters and Getters
     setName(newName) {
-        newName = newName.trim();
+        //newName = newName.trim();
         if (newName === '') {
           throw 'Name cannot be empty';
         }
@@ -81,9 +83,29 @@
         moodQ: this._moodQuotient
 
       };
+
+      //Update Storage
+      localStorage.setItem('virtualPet', JSON.stringify(this));
+
+      //Update death
+      if (this.dead) {
+        this.death();
+        this.printableList = {
+          'In a better place' : this.name
+        }
+      }
+
     }
 
     //Methods
+    initializePet() {
+      let tempPet = JSON.parse(localStorage.virtualPet);
+      console.log('From storage : ', tempPet);
+      for (const prop in tempPet) {
+        console.log('setting now: ', this[prop] = tempPet[prop]);
+      }
+    }
+
     getRandomInt(max) {
       return Math.floor(Math.random() * max);
     }
@@ -155,6 +177,7 @@
         9: 'painfully full',
         10: 'wanting to end it all'
         }
+        this.setPrintableList();
       return hungerStatus[_hungerQuotient];
     }
 
@@ -187,6 +210,9 @@
         this._moodQuotient += 1;
       }
 
+      if (this._hungerQuotient == 0) {
+        this.dead = true;
+      }
       if (this._hungerQuotient > 0) {
         this._hungerQuotient -= 1;
       }
@@ -195,34 +221,74 @@
       this.mood = this.calcMood(this._moodQuotient);
       this.setPrintableList();
     }
+
+    death() {
+      localStorage.clear();
+    }
+
+
   }
 
-  const pet1 = new Pet("Arlo");
-  console.log(pet1);
+  function checkPet() {
+    if (localStorage.virtualPet) {
+      // const pet1 = new Pet();
+      //pet1.initializePet();
+      const tempPet = new Pet();
+      tempPet.initializePet();
+      return tempPet;
+    }
+    else {
+      return new Pet('Gazpacho');
+    }
+  }
 
-  pet1.getMoodQ();
-  pet1.getHungerQ();
-  pet1.feed('Lobster');
+// if (localStorage.virtualPet) {
+//   const pet1 = JSON.parse(localStorage.getItem('virtualPet'));
+//   pet1.setPrintableList();
+//   console.log('Old Pet: ', pet1)
+//  }
+// else {
+//   const pet1 = new Pet('Gazpacho');
+//   console.log('New Pet: ', pet1)
+//   pet1.setPrintableList();
+//  }
 
-  pet1.getMoodQ();
-  pet1.getHungerQ();
-  pet1.feed('Onion');
+//Testing
 
-  pet1.getMoodQ();
-  pet1.getHungerQ();
-  pet1.feed('Taco');
+  // pet1.getMoodQ();
+  // pet1.getHungerQ();
+  // pet1.feed('Lobster');
 
-  pet1.getMoodQ();
-  pet1.getHungerQ();
+  // pet1.getMoodQ();
+  // pet1.getHungerQ();
+  // pet1.feed('Onion');
+
+  // pet1.getMoodQ();
+  // pet1.getHungerQ();
+  // pet1.feed('Taco');
+
+  // pet1.getMoodQ();
+  // pet1.getHungerQ();
+  // pet1.play('Ball');
+
+  // pet1.getMoodQ();
+  // pet1.getHungerQ();
+  const pet1 = checkPet();
+
   pet1.play('Ball');
+  pet1.play('Ball');
+  pet1.feed('Lobster');
+  pet1.play('Ball');
+  pet1.play('Ball');
+  pet1.play('Matches');
 
-  pet1.getMoodQ();
-  pet1.getHungerQ();
-  
+
+
+
 </script>
 
 {#each Object.entries(pet1.printableList) as [key, value]}
   <h3>{key}: {value}</h3>
 {/each}
 
-<!-- End of Tommy's Code for Pet Object -->
+<!-- End of Tommy's Code for Pet Class -->
