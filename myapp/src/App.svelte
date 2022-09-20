@@ -1,55 +1,68 @@
 <script>
   //import svelteLogo from './assets/svelte.svg'
-  import PetModule from './lib/VPet.svelte'
+  import PetModule , {} from './lib/VPet.svelte'
   //import PetModule2 from './lib/VPet2.svelte'
 
   let name = 'Daniel and Tommy';
   </script>
 
 <main>
-  <!-- <div>
-     <a href="https://vitejs.dev" target="_blank"> 
-      <img src="/vite.svg" class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank"> 
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div> -->
   
-  <h1>
-    Hello, {name}!
-  </h1>
+<div class="petstylingapp stack-large">
+  <h1>{name}</h1>
+  <div><PetModule /></div>
+  <!-- Filter -->
+  <div class="filters btn-group stack-exception">
 
-  <h1>Your Virtual Pet</h1>
 
-  <div class="card">
-    <PetModule/>
-    <!-- <PetModule2/> -->
+    <button class="btn" on:click={pet1.play("ball")} >
+      <span class="visually-hidden">Press to</span>
+      <span>Play</span>
+      <span class="visually-hidden">with your pet</span>
+    </button>
+    
+    
+    <button class="btn">
+      <span class="visually-hidden">Press to</span>
+      <span>Feed</span>
+      <span class="visually-hidden">your Pet</span>
+    </button>
+   
   </div>
 
-  <!-- <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
+  <!-- Pet Status -->
+  <h2 id="list-heading"><img src="https://wc.wallpaperuse.com/wallp/85-854941_s.jpg" >  </h2>
 
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p> -->
+  <!-- -->
+  <ul role="list" class="petstyling-list stack-large" aria-labelledby="list-heading">
+    <!-- petstyling-1 (editing mode) -->
+    <li class="petstyling">
+      <div class="stack-small">
+        <form class="stack-small">
+          <div class="form-group">
+            <label for="petstyling-1" class="petstyling-label">
+              New name
+            </label>
+            <input
+              type="text"
+              id="petstyling-1"
+              autocomplete="off"
+              class="petstyling-text" />
+          </div>
+          <div class="btn-group">
+            <button class="btn btn__primary petstyling-edit" type="submit">
+              Save
+              <span class="visually-hidden">new name for your Pet</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </li>
+
+   
+  </ul>
+  
 
 </main>
 
-<style>
-  /* .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
-  } */
-</style>
+

@@ -14,7 +14,9 @@
 
 <!-- ------------------------ -->
 <!-- Tommy's Code for Pet Class -->
-<script context="module">
+<script>
+  export 
+
   class Pet {
 
     constructor(name = "Fido") {
@@ -289,6 +291,9 @@
 
 {#each Object.entries(pet1.printableList) as [key, value]}
   <h3>{key}: {value}</h3>
-{/each}
+{/each}                    
 
 <!-- End of Tommy's Code for Pet Class -->
+
+
+
